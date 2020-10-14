@@ -89,9 +89,9 @@
 \end{eqnarray}
 と定義する．
 
-推定されたパラメータ$a$，$b$について，その相関が強い場合には，推定が不安定である可能性がある．そこでこのパラメータ間の相関係数$r_{ab}$を，パラメータ推定時に算出したヘッセ行列$\textbf{H}$の逆行列である共分散行列$\textbf{Cov}$を用いることで，相関行列$\textbf{Cor}$を求めて導出する．
+推定されたパラメータ$a$，$b$について，その相関が強い場合には，推定が不安定である可能性がある．そこでこのパラメータ間の相関係数$r_{ab}$を，パラメータ推定時に算出したヘッセ行列$\textbf{H}$の逆行列から共分散行列$\textbf{Cov}$を求め，相関行列$\textbf{Cor}$を導出する．
 \begin{eqnarray}
-  {\bf Cov} = {\bf H}^{-1}
+  {\bf H} = {\bf Cov}^{-1}
   \end{eqnarray}
 \begin{eqnarray}
   {\bf Cor} = \left( \begin{array}{cc} 
@@ -99,13 +99,17 @@
 			r_{ba} & 1 
 			\end{array}
 			\right)
-			= \left( \begin{array}{cc} 
-			\sigma_{aa}/s_{aa} & \sigma_{ab}/\sigma_{ab} \\
-			\sigma_{ba}/\sigma_{bb} & \sigma_{bb}/\sigma_{bb} 
+			= {\bf D} \: {\bf Cov} \: {\bf D} 
+\end{eqnarray}
+
+ここで，$\textbf{D}$は$ii$成分が$1/\sigma_i$となる以下の対角行列である．
+\begin{eqnarray}
+  {\bf D} = \left( \begin{array}{cc} 
+			1/\sigma_1 & 0 \\
+			0 & 1/\sigma_2 
 			\end{array}
 			\right)
-			= {\bf Cov}
-\end{eqnarray}
+  \end{eqnarray}
 
 
 \subsection{残差の自己相関の有無を判断する\label{estrho}}
